@@ -1,0 +1,425 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: aymane.menfaa@insa-rennes.fr
+  description: |
+    This is a prototype of CPOO's BuzzChat front/back API.
+  title: Buzzchat CPOO Server API
+  version: 0.0.1
+servers:
+- url: http://localhost:8080/
+security:
+- CookieAuth: []
+tags:
+- description: Authentication endpoints.
+  name: authentication
+- description: Conversation management endpoints.
+  name: conversation
+- description: Message management endpoints.
+  name: message
+- description: User management endpoints.
+  name: user
+paths:
+  /conversation/addConversation:
+    post:
+      description: Create a new conversation based on a set of users
+      operationId: addConversation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddConversationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationDisplayDTO'
+          description: OK
+      summary: Create a new conversation or return an existing one
+      tags:
+      - conversation
+      x-content-type: application/json
+      x-accepts: application/json
+  /conversation/getAllConversationsOfUser:
+    get:
+      operationId: getAllConversationsOfUser
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConversationDisplayDTO'
+                type: array
+          description: OK
+      summary: Get all conversations of the current user
+      tags:
+      - conversation
+      x-accepts: application/json
+  /message:
+    post:
+      description: Send a message to the destination
+      operationId: messagePost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMessageDTO'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageDTO'
+          description: OK
+      summary: Create a new message
+      tags:
+      - message
+      x-content-type: application/json
+      x-accepts: application/json
+  /message/getAllMessagesOfConversation:
+    post:
+      description: Get all messages of a conversation based on a set of users
+      operationId: getAllMessagesOfConversation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UserProfileDTO'
+              type: array
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Message'
+                type: array
+          description: OK
+      summary: Get all messages of a conversation
+      tags:
+      - message
+      x-content-type: application/json
+      x-accepts: application/json
+  /message/getLastMessagesOfConversation:
+    post:
+      description: Get the last messages of a conversation based on a set of users
+      operationId: getLastMessagesOfConversation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/UserProfileDTO'
+              type: array
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Message'
+                type: array
+          description: OK
+      summary: Get the last messages of a conversation
+      tags:
+      - message
+      x-content-type: application/json
+      x-accepts: application/json
+  /user/signup:
+    post:
+      description: Create a user account based on inserted credentials
+      operationId: signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCredentialsDTO'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEntity'
+          description: OK
+      security: []
+      summary: Sign up a new user
+      tags:
+      - authentication
+      x-content-type: application/json
+      x-accepts: application/json
+  /user/signin:
+    post:
+      description: Sign in based on provided credentials and create a session
+      operationId: signin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCredentialsDTO'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEntity'
+          description: OK
+      security: []
+      summary: Sign in a user
+      tags:
+      - authentication
+      x-content-type: application/json
+      x-accepts: application/json
+  /user/username:
+    get:
+      operationId: getUserName
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+      summary: Get the username of the current user
+      tags:
+      - user
+      x-accepts: application/json
+  /user/profile:
+    get:
+      description: Get the informations of the signed in user
+      operationId: profile
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileDTO'
+          description: OK
+      summary: Get the profile of the current user
+      tags:
+      - user
+      x-accepts: application/json
+  /user/signout:
+    post:
+      description: Sign out from the service and close the user session
+      operationId: signout
+      responses:
+        "200":
+          description: OK
+      summary: Sign out the current user
+      tags:
+      - authentication
+      x-accepts: application/json
+  /user/{login}:
+    delete:
+      description: Delete the user's account based on credentials (login). All the
+        authenticated users may use this endpoint
+      operationId: delete
+      parameters:
+      - explode: false
+        in: path
+        name: login
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      summary: Delete a user
+      tags:
+      - user
+      x-accepts: application/json
+  /user/is-authenticated:
+    get:
+      operationId: isAuthenticated
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEntity'
+          description: OK
+      summary: Check if the user is authenticated
+      tags:
+      - authentication
+      x-accepts: application/json
+components:
+  schemas:
+    AddConversationRequest:
+      example:
+        logins:
+        - logins
+        - logins
+      properties:
+        logins:
+          items:
+            type: string
+          type: array
+      type: object
+    ConversationDisplayDTO:
+      example:
+        lastMessage: lastMessage
+        from: from
+        usernames:
+        - usernames
+        - usernames
+        id: id
+        pictures:
+        - pictures
+        - pictures
+        timestamp: 0
+      properties:
+        id:
+          type: string
+        from:
+          type: string
+        usernames:
+          items:
+            type: string
+          type: array
+        pictures:
+          items:
+            type: string
+          type: array
+        lastMessage:
+          type: string
+        timestamp:
+          format: int64
+          type: integer
+      type: object
+    NewMessageDTO:
+      example:
+        to:
+        - to
+        - to
+        type: type
+        body: body
+      properties:
+        to:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+        body:
+          type: string
+      type: object
+    MessageDTO:
+      example:
+        from: from
+        to:
+        - to
+        - to
+        type: type
+        body: body
+        timestamp: 0
+      properties:
+        timestamp:
+          format: int64
+          type: integer
+        from:
+          type: string
+        to:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+        body:
+          type: string
+      type: object
+    UserCredentialsDTO:
+      example:
+        dateDeNaissance: dateDeNaissance
+        password: password
+        photo: photo
+        login: login
+        nom: nom
+        prenom: prenom
+        email: email
+      properties:
+        login:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        nom:
+          type: string
+        prenom:
+          type: string
+        dateDeNaissance:
+          type: string
+        photo:
+          type: string
+      type: object
+    Message:
+      example:
+        from: from
+        id: id
+        to:
+        - to
+        - to
+        type: type
+        body: body
+        timestamp: 0
+      properties:
+        id:
+          type: string
+        timestamp:
+          type: integer
+        from:
+          type: string
+        to:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+        body:
+          type: string
+      type: object
+    UserProfileDTO:
+      example:
+        login: login
+      properties:
+        login:
+          type: string
+      type: object
+    ResponseEntity:
+      example:
+        headers: "{}"
+        message: message
+      properties:
+        headers:
+          properties: {}
+          type: object
+        message:
+          type: string
+      type: object
+    HttpHeaders:
+      properties: {}
+      type: object
+  securitySchemes:
+    CookieAuth:
+      description: Use a session cookie to authenticate (see /signin).
+      in: cookie
+      name: JSESSIONID
+      type: apiKey
+x-samples-languages:
+- curl
+- javascript
+- node
+- java
+- python
+- php
+

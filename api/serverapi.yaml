@@ -1,0 +1,355 @@
+openapi: "3.0.3"
+info:
+  contact:
+    email: aymane.menfaa@insa-rennes.fr
+  description: |
+    This is a prototype of CPOO's BuzzChat front/back API.
+  title: Buzzchat CPOO Server API
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/
+security:
+  - CookieAuth: [ ]
+
+tags:
+  - name: authentication
+    description: Authentication endpoints.
+  - name: conversation
+    description: Conversation management endpoints.
+  - name: message
+    description: Message management endpoints.
+  - name: user
+    description : User management endpoints.
+paths:
+  /conversation/addConversation:
+    post:
+      summary: "Create a new conversation or return an existing one"
+      description : "Create a new conversation based on a set of users"
+      operationId: "addConversation"
+      tags : 
+        - conversation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddConversationRequest"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationDisplayDTO"
+  /conversation/getAllConversationsOfUser:
+    get:
+      summary: "Get all conversations of the current user"
+      operationId: "getAllConversationsOfUser"
+      tags : 
+        - conversation
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/ConversationDisplayDTO"
+  /message:
+    post:
+      summary: "Create a new message"
+      description : "Send a message to the destination"
+      operationId: "messagePost"
+      tags : 
+        - message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewMessageDTO"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageDTO"
+  /message/getAllMessagesOfConversation:
+    post:
+      summary: "Get all messages of a conversation"
+      description : "Get all messages of a conversation based on a set of users"
+      operationId: "getAllMessagesOfConversation"
+      tags : 
+        - message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/UserProfileDTO"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Message"
+  /message/getLastMessagesOfConversation:
+    post:
+      summary: "Get the last messages of a conversation"
+      description : "Get the last messages of a conversation based on a set of users"
+      operationId: "getLastMessagesOfConversation"
+      tags : 
+        - message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/UserProfileDTO"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Message"
+  /user/signup:
+    post:
+      summary: "Sign up a new user"
+      description : Create a user account based on inserted credentials
+      operationId: "signup"
+      security : []
+      tags : 
+        - authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserCredentialsDTO"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+  /user/signin:
+    post:
+      summary: "Sign in a user"
+      description : Sign in based on provided credentials and create a session 
+      operationId: "signin"
+      security: []
+      tags : 
+        - authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserCredentialsDTO"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+  /user/username:
+    get:
+      summary: "Get the username of the current user"
+      operationId: "getUserName"
+      tags : 
+        - user
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "string"
+  /user/profile:
+    get:
+      summary: "Get the profile of the current user"
+      description : Get the informations of the signed in user 
+      operationId: "profile"
+      tags : 
+        - user
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfileDTO"
+  /user/signout:
+    post:
+      summary: "Sign out the current user"
+      description : "Sign out from the service and close the user session"
+      operationId: "signout"
+      tags : 
+        - authentication
+      responses:
+        "200":
+          description: "OK"
+  /user/{login}:
+    delete:
+      summary: "Delete a user"
+      description : "Delete the user's account based on credentials (login). All the authenticated users may use this endpoint"
+      operationId: "delete"
+      tags : 
+        - user
+      parameters:
+        - name: "login"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+  /user/is-authenticated:
+    get:
+      summary: "Check if the user is authenticated"
+      operationId: "isAuthenticated"
+      tags : 
+        - authentication
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+components:
+  schemas:
+    AddConversationRequest:
+      type: "object"
+      properties:
+        logins:
+          type: "array"
+          items:
+            type: "string"
+    ConversationDisplayDTO:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        from:
+          type: "string"
+        usernames:
+          type: "array"
+          items:
+            type: "string"
+        pictures:
+          type: "array"
+          items:
+            type: "string"
+        lastMessage:
+          type: "string"
+        timestamp:
+          type: "integer"
+          format: "int64"
+    NewMessageDTO:
+      type: "object"
+      properties:
+        to:
+          type: "array"
+          items:
+            type: "string"
+        type:
+          type: "string"
+        body:
+          type: "string"
+    MessageDTO:
+      type: "object"
+      properties:
+        timestamp:
+          type: "integer"
+          format: "int64"
+        from:
+          type: "string"
+        to:
+          type: "array"
+          items:
+            type: "string"
+        type:
+          type: "string"
+        body:
+          type: "string"
+    UserCredentialsDTO:
+      type: "object"
+      properties:
+        login:
+          type: "string"
+        password:
+          type: "string"
+        email:
+          type: "string"
+        nom:
+          type: "string"
+        prenom:
+          type: "string"
+        dateDeNaissance:
+          type: "string"
+        photo:
+          type: "string"
+    Message:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        timestamp:
+          type: "integer"
+        from:
+          type: "string"
+        to:
+          type: "array"
+          items:
+            type: "string"
+        type:
+          type: "string"
+        body:
+          type: "string"
+    UserProfileDTO:
+      type: "object"
+      properties:
+        login:
+          type: "string"
+    ResponseEntity:
+      type: "object"
+      properties:
+        headers:
+          $ref: "#/components/schemas/HttpHeaders"
+        message: 
+          type: "string"
+    HttpHeaders:
+      type: "object"
+      properties: {}
+
+  securitySchemes:
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+      description: "Use a session cookie to authenticate (see /signin)."
+
+x-samples-languages:
+  - curl
+  - javascript
+  - node
+  - java
+  - python
+  - php
+

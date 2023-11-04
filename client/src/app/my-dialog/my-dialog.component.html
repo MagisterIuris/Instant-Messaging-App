@@ -1,0 +1,10 @@
+<div class="custom-dialog-container">
+  <h1 class="custom-dialog-title">Créer une conversation</h1>
+  <div class="input-container">
+    <input class="custom-dialog-input" type="text" placeholder="Votre username" [(ngModel)]="user1">
+  </div>
+  <div class="input-container">
+    <input class="custom-dialog-input" type="text" placeholder="Username du destinataire" [(ngModel)]="user2">
+  </div>
+  <button (click)="addConversationButton()" (click)="confirmAdd()" class="custom-dialog-button">Ajouter une conversation</button>
+</div>

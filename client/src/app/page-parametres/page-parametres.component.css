@@ -1,0 +1,317 @@
+/* Mode clair */
+/* Style pour centrer la carte */
+.centered-card {
+    text-align: center; /* Centre le contenu à l'intérieur de la carte */
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-top: 40px;
+}
+
+body {
+  background-color:#FFF7EA;
+}
+
+.no-border{
+    border: none;
+}
+/* Dans votre fichier CSS ou SCSS */
+
+
+.placeholder-nom{
+    border-radius: 30px;
+    border: none;
+    background-color:#FBCE83;
+    width: 95%;
+}
+
+
+.placeholder-text {
+    flex-grow: 1;
+    margin-right: 8px;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #737373;
+    display: flex;
+    align-items: center;
+}
+
+.custom-input-button2 {
+    border-radius: 30px; /* Coins arrondis */
+    background-color: #EF9F18;/* Couleur d'arrière-plan */
+    width: 50%; /* Largeur personnalisée */
+    padding: 15px;
+    margin-top: 30px;
+    justify-content: center;
+    display: flex;
+}
+
+/*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
+
+/* Style pour centrer la carte */
+
+
+.text-theme {
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #737373;
+}
+
+.no-border{
+    border: none;
+}
+/* Dans votre fichier CSS ou SCSS */
+
+.custom-input-contain {
+    flex-direction: column;
+    justify-content: center; /* Centre verticalement le contenu */
+    align-items: center; /* Centre horizontalement le contenu */
+    margin-top: 30px;
+    border-radius: 17px; /* Coins arrondis */
+    color:black;
+    padding: 10px;
+    margin-top: 30px;
+    display: flex;
+    width: 40%;
+    z-index : 100;
+}
+
+.custom-input {
+    border-radius: 17px;
+    background-color: #FBCE83;
+    color: black;
+    padding: 10px;
+    padding-left: 3%;
+    margin-top: 30px;
+    display: flex;
+    width: 60%;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+
+.custom-input-button {
+    border-radius: 18px; /* Coins arrondis */
+    background-color: #EF9F18;/* Couleur d'arrière-plan */
+    width: 20%; /* Largeur personnalisée */
+    height: 50%; /* Hauteur personnalisée */
+    margin-top: 2%;
+}
+
+
+
+/*Code CSS du toggle switch*/
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, ".SFNSText-Regular", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+}
+
+.toggle {
+    cursor: pointer;
+    display: inline-block;
+    position: absolute; /* Ajoutez cette ligne */
+    top: 50%; /* Ajoutez cette ligne */
+    right: 20px; /* Ou ajustez cette valeur selon vos préférences */
+    transform: translateY(-50%);
+}
+
+.toggle-switch {
+  display: inline-block;
+  background: #ccc;
+  border-radius: 16px;
+  width: 58px;
+  height: 32px;
+  position: relative;
+  vertical-align: middle;
+  transition: 0.25s;
+}
+.toggle-switch:before, .toggle-switch:after {
+  content: "";
+}
+.toggle-switch:before {
+  display: block;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: left 0.25s;
+}
+.toggle:hover .toggle-switch:before {
+  background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.toggle-checkbox:checked + .toggle-switch {
+  background: #EF9F18;
+}
+.toggle-checkbox:checked + .toggle-switch:before {
+  left: 30px;
+}
+
+.toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+
+.toggle-label {
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
+}
+
+
+
+#bee-0 img{ /*bien*/
+    animation: moveAndRotate-0 5s linear infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 100px;
+    right: 500px;
+  }
+  
+  #bee-1 img{
+    animation: moveAndRotate-0 5s linear infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 200px;
+    right: 00px;
+  }
+  
+  #bee-2 img{  /*bien*/
+    animation: moveAndRotate-0 5s linear infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 400px;
+    right: 400px;
+  }
+  
+  #bee-3 img{
+    animation: moveAndRotate-0 5s linear infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 700px;
+    right : 200px;
+  }
+  
+  #bee-4 img{ /*bien*/
+    animation: moveAndRotate-0 5s linear infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 400px;
+    left: 400px;
+  }
+  
+  #bee-5 img { /*bien*/
+  
+    animation: moveAndRotate-0 5s linear infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 100px;
+    left : 500px;
+  }
+  
+  #bee-6 img {
+  
+    animation: moveAndRotate-0 5s linear infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 700px;
+    left: 200px;
+  }
+  
+  #bee-7 img {
+    animation: moveAndRotate-0 5s linear infinite;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 200px;
+    left: 0px;
+}
+
+
+
+
+
+  /* Animation pour la première abeille */
+  @keyframes moveAndRotate-0 {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+
+
+  /*Config responsive*/
+
+
+  @media (max-width: 800px) {
+    #bee-0 img,
+    #bee-1 img,
+    #bee-2 img,
+    #bee-3 img,
+    #bee-4 img,
+    #bee-5 img,
+    #bee-6 img,
+    #bee-7 img {
+      width: 50px; /* Taille pour les écrans de largeur maximale de 768 pixels */
+      height: 50px;
+      position : absolute;
+    }
+
+  }
+
+  @media (max-width: 800px) {
+    /* Pour les écrans de 800px ou moins, définissez une largeur minimale */
+    .custom-input-contain,
+    .custom-input {
+      min-width: 180px; /* Ajustez cette valeur selon votre choix */
+    }
+  }
+
+  /* Mode sombre */ 
+  .dark-mode {
+    background-color: #222; /* Exemple de couleur de fond en mode sombre */
+    color: #fff; /* Exemple de couleur de texte en mode sombre */
+  }
+  
+  /* Styles pour le texte en mode sombre */
+  .dark-mode .dark-mode-text {
+    color: white; /* Exemple de couleur de texte en mode sombre */
+  }
+  /* Votre CSS existant */
+
+/* Ajoutez ceci pour le bouton "Delete" */
+.custom-input-button-delete {
+  border-radius: 30px;
+  background-color: #FF0000; /* Couleur d'arrière-plan pour le bouton de suppression */
+  width: 50%; /* Largeur personnalisée */
+  padding: 15px;
+  margin-top: 10px; /* Ajustez la marge supérieure selon vos préférences */
+  display: flex;
+  justify-content: center;
+  color: #fff; /* Couleur du texte */
+}
+
+/* Votre CSS existant */

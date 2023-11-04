@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Importez les styles CSS d'Angular Material -->
+    <title>Page d'inscription</title>
+</head>
+<body [ngClass]="{'dark-mode': themeService.isDarkTheme()}" >
+    <div class="centered-card" style="background-color: #FFF7EA;" [ngClass]="{'dark-mode': themeService.isDarkTheme()}">
+        <mat-sidenav-container class="full-height" style="background-color:#FFF7EA;" [ngClass]="{'dark-mode-text': themeService.isDarkTheme()}">
+            <mat-sidenav mode="side" opened class="sidenav" style="background-color:#FFF7EA;">
+                <div class="header-container" [ngClass]="{'dark-mode': themeService.isDarkTheme()}">
+                    <div class="header"[ngClass]="{'dark-mode': themeService.isDarkTheme()}">
+                        <img src="assets/Ellipse 75.svg" class="profile-image">
+                        <button class="online-button" (click)="changerEtatConnexion()" [ngClass]="{'dark-mode-text': themeService.isDarkTheme()}">
+                            {{ estEnLigne ? 'Online' : 'Offline' }}
+                        </button>
+                        <mat-icon style="margin-top: 4.5%; cursor: pointer; margin-left:90%" [routerLink]="['/page-parametres']">settings</mat-icon>
+                    </div>
+                    <div class="search-bar" >
+                        <mat-icon>search</mat-icon>
+                        <input matinput [(ngModel)]="filterConv" placeholder="Recherche..." class="placeholder-text" [ngClass]="{'dark-mode-text': themeService.isDarkTheme()}">
+                        <button mat-raised-button class = "custom-button" (click)="openDialog()">+</button>
+                    </div>
+                </div>
+                <div class="lists-container" [ngClass]="{'dark-mode': themeService.isDarkTheme(), 'dynamic-height-container': numberOfConversations > 10}">
+                    <!-- Liste de conversations -->
+                    <ul>
+                        <li *ngFor="let conversation2 of conversations2" class="item" [hidden]="!conversation2.usernames[0].toLowerCase().includes(filterConv.toLowerCase())">
+                            <div class="list-details">
+                                <ng-container *ngIf="conversation2.from === userLogin2 || conversation2.usernames[0] === userLogin2">
+                                    <img src = "assets/Ellipse 75.svg" class="profile-image-list" >
+                                    <div class="clickable-item" (click)="onItemClick2($event, conversation2)" (click)="getAllMessConvButton()">
+                                        {{conversation2.usernames[0]}}
+                                    </div>
+                                </ng-container>
+                            </div>
+                            </li>
+                    </ul>
+                    <!-- Ajoutez plus d'éléments de liste au besoin -->
+                </div>
+
+            </mat-sidenav>
+            <!-- ... (code précédent) ... -->
+
+            <mat-sidenav-content [ngClass]="{'dark-mode': themeService.isDarkTheme()}">
+                <div class="conversation-content">
+                    <div class="conversation-window" #conversationWindow>
+                        <!-- Affichage des messages de la conversation -->
+                        <div  *ngFor="let message of messages" [ngClass]="{'sent-message': message.from === userLogin, 'received-message': message.from !== userLogin}">
+                            <div >
+                                {{ message.body }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Barre d'informations du destinataire -->
+                    <div class="recipient-info" *ngIf="conversationActive2">
+                        <img src="assets/Ellipse 75.svg" class="profile-image-recipient">
+                        <div class="recipient-details">
+                        {{ conversationActive2.usernames }}
+                        <span class="recipient-status" [ngClass]="{'online': estEnLigne, 'offline': !estEnLigne}">
+                            <!--Pour l'instant je fais comme ça, mais après il faut insérer le statut en se basant sur la valeur du backend
+                            en prenant l'état du destinataire (Client) et le mettre ici !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+                            {{ estEnLigne ? 'Online' : 'Offline' }}
+                        </span>
+                        </div>
+                    </div>
+                                        
+                    <!-- Zone d'envoi de messages -->
+                    <div  *ngIf="afficherChampMessage">
+                        <div class="message-input">
+                        <input  [(ngModel)]="messageData.body" type="text" placeholder="Écrire un message" class="placeholder-text2" (keyup.enter)="sendButton()">
+                        <button mat-raised-button class="button-envoyer"  (click)="sendButton()">Envoyer</button>
+                        </div>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</body>
+</html>

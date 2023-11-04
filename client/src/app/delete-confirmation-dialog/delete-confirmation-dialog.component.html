@@ -1,0 +1,10 @@
+<div class="dialog-custom-container">
+    <h1 mat-dialog-title class="dialog-custom-title">Confirmation de suppression</h1>
+    <div mat-dialog-content class="dialog-custom-content">
+      <p>Êtes-vous sûr de vouloir supprimer votre compte ?</p>
+    </div>
+    <div mat-dialog-actions class="dialog-custom-actions">
+      <button mat-button (click)="cancel()" class="custom-dialog-button">Annuler</button>
+      <button mat-button  (click)="confirmDelete()" (click)="deleteButton()" mat-button routerLink="/se-connecter" color="warn" class="custom-dialog-button">Supprimer</button>
+    </div>
+</div>

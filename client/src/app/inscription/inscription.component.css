@@ -1,0 +1,58 @@
+/* Style pour centrer la carte */
+.centered-card {
+    text-align: center; /* Centre le contenu à l'intérieur de la carte */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.center-logo{
+    margin-top: 40px;
+}
+
+.no-border{
+    border: none;
+}
+/* Dans votre fichier CSS ou SCSS */
+.custom-input {
+    border-radius: 12px; /* Coins arrondis */
+    background-color:#FBCE83; /* Couleur d'arrière-plan */
+    color:black;
+    padding: 10px;
+    padding-left: 3%;
+    margin-top: 20px;
+    display: flex;
+    width: 300px;
+    margin-left: calc((100% - 300px) / 2);
+    
+    
+}
+
+/* Dans votre fichier CSS ou SCSS */
+/*.custom-input-container {
+    flex-direction: column;
+}*/
+
+.custom-input-button {
+    border-radius: 18px; /* Coins arrondis */
+    background-color: #EF9F18;/* Couleur d'arrière-plan */
+    width: 200px; /* Largeur personnalisée */
+    height: 40px; /* Hauteur personnalisée */
+    margin-top: 2%;
+}
+.lien-nav{
+    color: blue;
+    font-size:small;
+    display: flex;
+}
+.se-connecter{
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #EF9F18;
+    font-size: small;
+    cursor: pointer;
+    font-weight: bold;
+
+}

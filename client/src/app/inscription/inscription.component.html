@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Importez les styles CSS d'Angular Material -->
+    <title>Page d'inscription</title>
+</head>
+<body style="background-color:#FFF7EA;">
+    <div class="centered-card" style="background-color: #FFF7EA;">
+        <img src="assets/logo2.png"alt="Logo de votre site" z-index="-1" class="center-logo">
+        <p style="font-size: 40px; font-family: Arial, Helvetica, sans-serif ;">Créez votre compte</p>
+        <p style="font-size: 20px; font-family: Arial, Helvetica, sans-serif ;">Bienvenue sur BuzzChat ! Pour accéder à toutes nos fonctionnalités passionnantes, veuillez remplir le formulaire d'inscription ci-dessous</p>
+        <div class="custom-input-container">
+            <input matInput placeholder="Nom" class="custom-input no-border" name="nom" [(ngModel)]="signUpData.nom" required>
+            <input matInput placeholder="Prenom" class="custom-input no-border" name="prenom" [(ngModel)]="signUpData.prenom" required>
+            <input matInput placeholder="Adresse e-mail" class="custom-input no-border" name="email" [(ngModel)]="signUpData.email" required>
+            <input matInput placeholder="Mot de passe" class="custom-input no-border" type="password" name="password" [(ngModel)]="signUpData.password" required>
+            <input matInput placeholder="Confirmation du mot de passe" class="custom-input no-border" type="password" name="password" [(ngModel)]="signUpData.password" required>
+            <input matInput placeholder="Date de naissance" class="custom-input no-border"type="Date" name="datedenaissance" [(ngModel)]="signUpData.dateDeNaissance" required>
+            <input matInput placeholder="Nom d'utilisateur" class="custom-input no-border" name="login" [(ngModel)]="signUpData.login" required>
+            <input matInput placeholder="photo" class="custom-input no-border" name="photo" [(ngModel)]="signUpData.photo" required>
+            <p style="font-size: 10px; font-family: Arial, Helvetica, sans-serif ;margin-top: 35px;">En cliquant sur le bouton "S'inscrire", vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité</p>
+            <div>
+                <button class="custom-input-button no-border"  mat-button routerLink="/se-connecter" (click)="signUpButton()">S'inscrire</button>
+            </div>
+            <p class="se-connecter" routerLink="/se-connecter" >Se connecter</p>
+        </div>
+    </div>
+</body>
+</html>

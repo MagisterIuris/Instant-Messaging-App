@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Importez les styles CSS d'Angular Material -->
+    <title>Page d'inscription</title>
+</head>
+<body style="background-color:#FFF7EA;">
+<div class="centre-tout">
+    <mat-card class="carre-centre">
+        <img src = "../assets/abeille.png" width="130" height="130" alt="Huge-Bee" class="Huge-Bee"/>
+            <mat-card-title class="texte">{{title}}</mat-card-title>
+            <!-- Champ de saisie unique -->
+
+            <!-- A CONSIDERER CETTE PARTIE CAR TRES IMPORTANTE-->
+
+        <!--
+            <div>
+                <label for="usernameOrEmail">Username or email:</label>
+                <input type="text" id="usernameOrEmail" [(ngModel)]="usernameOrEmail" (input)="onInput()">
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <input type="text" id="password" [(ngModel)]="password" (input)="onInput()">
+            </div>
+
+        -->
+
+
+            <!-- Affichage dynamique des étiquettes -->
+        <!--
+            <div>
+                <label *ngIf="showUsernameLabel">Veuillez insérer votre Username</label>
+                <br>
+                <label *ngIf="showPasswordLabel">Veuillez insérer votre password</label>
+            </div>
+
+        -->
+
+
+            <!-- Champ de saisie pour Username-->
+            
+                <div>
+                    <input type="text" name="username" placeholder="Username or email" [(ngModel)]="loginData.login" required>
+                </div>
+
+                <!-- Champ de saisie pour Password -->
+                <div>
+                    <input type="password" name="password"  placeholder="Password" [(ngModel)]="loginData.password" required>
+                </div>
+
+                <!-- Barre cliquable -->
+                <button mat-button (click)="loginButton()">Log In</button>
+
+                <!--
+                    insertion des deux textes clickables
+                    qui emmenent vers les pages de changement
+                    de mdp ou d'inscription
+                    
+                -->
+
+                
+                <p class="texte_dessous" routerLink="/inscription">Sign up for Buzz !</p>
+
+                <div *ngFor="let bee of bees; let i = index" [attr.id]="'bee-' + i">
+                    <img [src]="bee.src" [style.transform]="'rotate(' + bee.rotation + 'deg)'" />
+                </div>
+    </mat-card>
+</div>
+</body>
+</html>

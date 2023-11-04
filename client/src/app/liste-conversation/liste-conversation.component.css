@@ -1,0 +1,359 @@
+body {
+  background-color: #FFF7EA;
+}
+
+.full-height {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* DEMANDER SUR CELA SI ON LE LAISSE COMME CA OU BIEN ON LE MODIFIE */ 
+
+.sidenav {
+  width: 41vh;
+}
+
+
+.conversation-window {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.message-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+
+.header-container {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #FFF7EA;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.5s ease, top 0.5s ease;
+}
+
+.header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #FFF7EA;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-start; /* Déplacer les éléments tout à gauche */
+  align-items: center;
+  padding: 10px;
+  transition: background-color 0.5s ease, top 0.5s ease;
+}
+
+/* Styles pour l'image Ellipse 75 */
+.header img {
+  position: absolute;
+  top: 3px;
+  left: 15px;
+}
+
+/* Styles pour le bouton Online/Offline */
+.online-button {
+  background-color: #FBCE83;
+  color: black;
+  padding: 5px 10px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: absolute;
+  bottom: 8px; /* Ajuster la position verticale vers le bas */
+  left: 70px; /* Ajuster la position horizontale vers la gauche */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.online-button:hover {
+  background-color: #fabe57;
+  color: white;
+}
+/*
+.message-input {
+  display: flex;
+  width: 76.4%;
+  position: fixed;
+  bottom: 0;
+  align-items: center;
+}
+*/
+.placeholder-text2 {
+  background-color: #FBCE83;
+  border-radius: 40px;
+  border: none;
+  height: 30px;
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  padding-left: 10px;
+}
+/*
+.message-input input {
+  flex-grow: 1;
+  margin-right: 16px;
+}
+*/
+.clickable-item {
+  text-align: center;
+  cursor: pointer;
+  background-color: #EF9F18;
+  border-radius: 30px;
+  padding: 15px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: medium;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%
+}
+
+.clickable-item:hover {
+  background-color: #F1A220;
+  color: white;
+}
+
+.list-details {
+  display: flex;
+  width: 20vw;
+}
+
+.profile-image {
+  width: 41px;
+  height: 41px;
+  margin-top: 16.65px;
+  border-radius: 50%;
+}
+
+.lists-container {
+display: flex;
+height : 86.8vh;
+width: 100%;
+}
+
+.search-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  z-index: 2;
+  background-color: #FBCE83;
+  border-radius: 40px;
+  width: 90%;
+  height: 4%;
+  margin-top: 5%;
+  margin-left: 3%;
+  display: flex;
+  align-items: center;
+  padding : 10px; 
+  padding-left: 10px;
+  transition: background-color 0.5s ease, top 0.5s ease;
+}
+
+.placeholder-text {
+  background-color: #FBCE83;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+  font-size: small;
+  padding-left: 5px;
+  width: 85%;
+  border-radius: 40px;
+}
+
+.profile-image-list {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.item {
+  list-style: none;
+  align-items: center;
+  margin-top: 9%;
+}
+
+.profile-image {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-image-list {
+  border-radius: 50%;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Utilisez ng-deep pour appliquer des styles au bouton "Envoyer" */
+::ng-deep .button-envoyer {
+  background-color: #FBCE83 !important;
+  color: black !important;
+  border: none !important;
+  border-radius: 20px !important;
+  transition: background-color 0.3s ease, color 0.3s ease !important; /* Ajoutez une transition pour les deux états */
+}
+
+::ng-deep .button-envoyer:hover {
+  background-color: #fabe57 !important;
+  color: white !important;
+}
+
+
+/* Mode sombre */ 
+.dark-mode {
+  background-color: #222; /* Exemple de couleur de fond en mode sombre */
+  color: #fff; /* Exemple de couleur de texte en mode sombre */
+}
+
+/* Styles pour le texte en mode sombre */
+.dark-mode .dark-mode-text {
+  color: white; /* Exemple de couleur de texte en mode sombre */
+}
+
+.dynamic-height-container {
+  min-height: 87.9vh; /* Définissez la hauteur minimale souhaitée */
+}
+
+/* Styles pour la barre de défilement en mode sombre (Exemple) */
+.conversation-window::-webkit-scrollbar {
+  width: 8px; /* Largeur de la barre de défilement */
+  background: transparent; /* Fond transparent */
+}
+
+.conversation-window::-webkit-scrollbar-thumb {
+  background-color: #fadaa2; /* Couleur du bouton de défilement */
+  border-radius: 4px; /* Bord arrondi du bouton de défilement */
+  max-height: 80px; /* Hauteur maximale de la barre de défilement */
+}
+
+.conversation-window::-webkit-scrollbar-track {
+  background-color: transparent; /* Couleur de la piste de défilement transparente */
+  border-radius: 4px; /* Bord arrondi de la piste de défilement */
+}
+
+.conversation-window {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* Ajoutez un débordement (overflow) pour créer une barre de défilement */
+  overflow-y: auto;
+  height: calc(100vh - 120px); /* Ajustez la hauteur maximale selon vos besoins */
+}
+
+/* Styles pour la zone d'envoi de messages */
+.message-input {
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: absolute; 
+bottom: 0; 
+overflow-y: hidden;
+}
+
+/* Styles pour le champ de saisie de message */
+.message-input input {
+flex-grow: 1;
+margin-right: 16px;
+width: auto; /* Réinitialise la largeur */
+}
+
+/* Styles pour le bouton "Envoyer" */
+.button-envoyer {
+min-width: auto; /* Réinitialise la largeur minimale */
+}
+
+.recipient-info {
+position: fixed;
+top: 0;
+background-color: #FBCE83;
+display: flex;
+align-items: center;
+width : 100%; 
+z-index: 2; /* Assurez-vous qu'elle reste au-dessus du contenu */
+padding : 10px; 
+box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-image-recipient {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+margin-right: 10px;
+}
+
+.recipient-details {
+font-weight:normal ;
+}
+
+.recipient-status {
+margin-left: 10px;
+}
+
+/*A revoir apres pour changer le status du destinataire et le statut de moi (emetteur) car quand je clique sur le bouton online/offline 
+de moi (emetteur), je remarque que le destinataire change de status lui aussi avec moi et celà n'est pas logique (vérifier l'image aussi si c'est 
+la même de l'emetteur ou pas)
+Revoir aussi la partie HTML correspondante*/ 
+
+.online {
+color: green;
+}
+
+.offline {
+color: red;
+}
+
+.conversation-content {
+margin-top: 70px; 
+}
+
+/*
+Ajouter la barre à coté + ajouter le padding pour barre de messages + bien définir une longueur des messages (qui soit plus petite) + Quand on ouvre une conversation
+ça descend automatiquement au dernier message envoyé 
+*/
+
+.sent-message {
+display: flex;
+background-color: #EF9F18;
+border-radius: 20px;
+font-size: medium;
+font-family: Arial, Helvetica, sans-serif;
+padding: 10px;
+max-width: 80%;
+overflow-wrap: break-word;
+word-break: break-all;
+margin-left: auto;
+margin-top: 5px; 
+}
+
+.received-message {
+display: flex;
+background-color: #efbd67;
+border-radius: 20px;
+font-size: medium;
+font-family: Arial, Helvetica, sans-serif;
+padding: 10px;
+max-width: 80%;
+overflow-wrap: break-word;
+word-break: break-all;
+margin-right: auto;
+margin-top: 5px; 
+}
+
+
+::ng-deep .custom-button {
+background-color: #f7c369 !important;
+color: black !important;
+border: none !important;
+border-radius: 20px !important;
+transition: background-color 0.3s ease, color 0.3s ease !important; /* Ajoutez une transition pour les deux états */
+}
+
+::ng-deep .custom-button:hover {
+background-color: #fabe57 !important;
+color: white !important;
+}

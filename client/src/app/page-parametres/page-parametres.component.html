@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Importez les styles CSS d'Angular Material -->
+    <title>Page d'inscription</title>
+</head>
+<body [ngClass]="{'dark-mode': themeService.isDarkTheme()}">
+    <div class="centered-card">
+        <img src="assets/Ellipse 75.svg" alt="Logo de votre site" z-index="-1" class="center-logo">
+        <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;">Noha</p>
+        <p style="font-size: 40px; font-family: Arial, Helvetica, sans-serif; align-self:center;">Paramètres</p>
+        <div class="custom-input-contain">
+            <div style="width: 100%; background-color: #FFF7EA;"></div>
+            <div class="custom-input no-border" style="padding: 15px;">
+                <input matInput placeholder="Nom" class="placeholder-nom">
+                <mat-icon style="cursor: pointer;">edit</mat-icon>
+            </div>
+            <div class="custom-input no-border" style="padding: 15px;">
+                <div class="placeholder-text">Langue</div>
+                <mat-select>
+                    <mat-option value="fr">Français</mat-option>
+                    <mat-option value="en">Anglais</mat-option>
+                    <mat-option value="es">Espagnol</mat-option>
+                </mat-select>
+            </div>
+            <div class="custom-input no-border">
+                <p class="text-theme" [ngClass]="{'dark-mode-text': isDarkMode}">{{ themeText }}</p>
+                <!--Partie toggle-->
+               <!-- Bouton de bascule Dark/Light Mode -->
+                <label class="toggle">
+                    <input class="toggle-checkbox" type="checkbox" (change)="toggleDarkMode()" [checked]="themeService.getCurrentTheme() === themeService.DARK_THEME">
+                    <div class="toggle-switch"></div>
+                    <span class="toggle-label"></span>
+                </label>
+                <!-- Fin partie toggle-->
+            </div>
+            <button class="custom-input-button2" mat-button routerLink="/se-connecter" (click)="signoutButton()">Deconnexion</button>
+            <button class="custom-input-button-delete" mat-button (click)="openDeleteConfirmationDialog()">Delete Account</button>
+        </div>
+    </div>
+
+    <div *ngFor="let bee of bees; let i = index" [attr.id]="'bee-' + i">
+        <img [src]="bee.src" [style.transform]="'rotate(' + bee.rotation + 'deg)'" />
+    </div>
+</body>
+</html>
