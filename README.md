@@ -1,7 +1,5 @@
 # INFO4 CPOO project
 
-This is the base project your team **MUST** FORK to implement its version of the instant messaging app.
-
 ## Server
 
 The server is a Spring Boot app located in the /server directory.
